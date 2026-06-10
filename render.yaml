@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: family-chat-api
+    env: node
+    region: singapore   # 한국과 가장 가까운 리전
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # 아래 값들은 Render 대시보드에서 직접 입력하세요 (보안)
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
