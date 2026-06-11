@@ -48,11 +48,17 @@ if (process.env.NODE_ENV === 'production') {
   // app.get('*', (req, res) => {
   //   res.sendFile(path.join(__dirname, '../../frontend/build/index.html'));
   // });
-}
 
-app.get('/', (req, res) => {
-  res.send('우리가족톡 백엔드 서버가 정상 구동 중입니다! 🎉');
-});
+  // ⚠️ req, res 스펠링과 괄호 위치를 정확하게 확인해 주세요!
+  app.get('/', (req, res) => {
+    try {
+      res.send('우리가족톡 백엔드 서버가 정상 구동 중입니다! 🎉');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('서버 내부 오류');
+    }
+  });
+}
 
 // ── Error handler ─────────────────────────────────────────────
 app.use((err, req, res, next) => {
